@@ -10,7 +10,7 @@ import (
 type File struct {
 	Name      string
 	Extension string
-	Data      *[]byte
+	Data      []byte
 }
 
 func readFile(fileName string) *File {
@@ -23,8 +23,14 @@ func readFile(fileName string) *File {
 	} else {
 		file.Extension = filepath.Ext(fileName)
 		file.Name = strings.TrimSuffix(filepath.Base(fileName), file.Extension)
-		file.Data = &body
+		file.Data = body
 	}
 
 	return file
+}
+
+func writeFile(Out *File) error {
+	fileName := Out.Name + "." + Out.Extension
+	err := os.WriteFile(fileName, Out.Data, 0644)
+	return err
 }

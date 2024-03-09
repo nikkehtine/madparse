@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -11,6 +12,12 @@ func main() {
 
 	fileName := os.Args[1]
 	In := readFile(fileName)
+	Out := &File{
+		Name:      In.Name,
+		Extension: "html",
+		Data:      In.Data,
+	}
 
-	os.WriteFile(In.Name+".html", *In.Data, 0644)
+	fmt.Print(string(In.Data))
+	writeFile(Out)
 }
