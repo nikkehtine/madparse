@@ -8,9 +8,9 @@ import (
 )
 
 type File struct {
-	Name      string
-	Extension string
-	Data      []byte
+	name      string
+	extension string
+	data      []byte
 }
 
 func readFile(fileName string) *File {
@@ -21,16 +21,16 @@ func readFile(fileName string) *File {
 	} else if err != nil {
 		log.Fatalln(err)
 	} else {
-		file.Extension = filepath.Ext(fileName)
-		file.Name = strings.TrimSuffix(filepath.Base(fileName), file.Extension)
-		file.Data = body
+		file.extension = filepath.Ext(fileName)
+		file.name = strings.TrimSuffix(filepath.Base(fileName), file.extension)
+		file.data = body
 	}
 
 	return file
 }
 
 func writeFile(Out *File) error {
-	fileName := Out.Name + "." + Out.Extension
-	err := os.WriteFile(fileName, Out.Data, 0644)
+	fileName := Out.name + "." + Out.extension
+	err := os.WriteFile(fileName, Out.data, 0644)
 	return err
 }

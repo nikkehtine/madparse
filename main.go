@@ -13,11 +13,11 @@ func main() {
 	fileName := os.Args[1]
 	In := readFile(fileName)
 	Out := &File{
-		Name:      In.Name,
-		Extension: "html",
-		Data:      In.Data,
+		name:      In.name,
+		extension: "html",
+		data:      In.data,
 	}
 
-	fmt.Print(string(In.Data))
+	fmt.Print(string(In.data))
 	writeFile(Out)
 }
